@@ -5,12 +5,12 @@
   "author": "langbamit",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/langbamit/mdx-js-qwik.git"
+    "url": "git+https://github.com/maiieul/mdx-js-qwik.git"
   },
   "bugs": {
-    "url": "https://github.com/langbamit/mdx-js-qwik/issues"
+    "url": "https://github.com/maiieul/mdx-js-qwik/issues"
   },
-  "homepage": "https://github.com/langbamit/mdx-js-qwik/tree/main/#readme",
+  "homepage": "https://github.com/maiieul/mdx-js-qwik/tree/main/#readme",
   "keywords": [
     "qwik",
     "qwik-city",
