@@ -1,5 +1,11 @@
 import { defineConfig } from "vite";
+import pkg from "./package.json";
 import { qwikVite } from "@builder.io/qwik/optimizer";
+import tsconfigPaths from "vite-tsconfig-paths";
+
+const { dependencies = {}, peerDependencies = {} } = pkg as any;
+const makeRegex = (dep) => new RegExp(`^${dep}(/.*)?$`);
+const excludeAll = (obj) => Object.keys(obj).map(makeRegex);
 
 export default defineConfig(() => {
   return {
@@ -7,15 +13,19 @@ export default defineConfig(() => {
       target: "es2020",
       emptyOutDir: false,
       lib: {
-        entry: ["./src/index.ts", "./src/recma-jsx-rewrite-qwik.ts"],
+        entry: ["./src/index.ts"],
         formats: ["es", "cjs"],
-        fileName: (format, entryName) =>
-          `${entryName}.${format === "es" ? "mjs" : "cjs"}`,
+        fileName: (format) => `index.qwik.${format === "es" ? "mjs" : "cjs"}`,
       },
       rollupOptions: {
-        external: ["unified"],
+        external: [
+          "unified",
+          /^node:.*/,
+          ...excludeAll(dependencies),
+          ...excludeAll(peerDependencies),
+        ],
       },
     },
-    plugins: [qwikVite()],
+    plugins: [qwikVite(), tsconfigPaths()],
   };
 });
