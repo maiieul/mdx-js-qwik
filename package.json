@@ -19,7 +19,7 @@
   ],
   "license": "MIT",
   "type": "module",
-  "main": "./lib/inde.mjs",
+  "main": "./lib/index.mjs",
   "qwik": "./lib/index.mjs",
   "types": "./lib/index.d.ts",
   "exports": {
